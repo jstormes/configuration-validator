@@ -1,12 +1,12 @@
 {
-    "name": "jasonterando/config-validator",
+    "name": "jstormes/config-validator",
     "description": "Utility to collect and validate configuration information",
     "license": "MIT",
     "keywords": [
         "configuration",
         "validation"
     ],
-    "homepage": "http://gitlab.digitalroominc.com/",
+    "homepage": "https://github.com/jasonterando/configuration-validator",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "bin": [
