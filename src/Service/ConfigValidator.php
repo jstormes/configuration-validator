@@ -3,9 +3,11 @@ namespace ConfigurationValidator\Service;
 
 use Exception;
 use StdClass;
+use is_dir;
+use is_file;
 
 class ConfigValidator {
-    public const types = ["any", "string", "integer", "number", "boolean", "url"];
+    public const types = ["any", "string", "integer", "number", "boolean", "directory", "file", "url"];
 
     public function validate(array $configDef, array $config) {
         $warnings = [];
@@ -133,6 +135,16 @@ class ConfigValidator {
                 $b = false;
                 if(! Utility::getBoolean($value, $b)) {
                     throw new Exception("\"$value\" does not appear to be boolean");
+                }
+                break;
+            case "directory":
+                if(! is_dir($value)) {
+                    throw new Exception("\"$value\" is not an existing, accessible directory");
+                }
+                break;
+            case "file":
+                if(! is_file($value)) {
+                    throw new Exception("\"$value\" is not an existing, accessible file");
                 }
                 break;
             case "url":

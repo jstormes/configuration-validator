@@ -215,4 +215,34 @@ class ConfigValidatorTest extends BaseTestCase {
         $this->expectExceptionMessage('"xxx" is not an expected type');
         $this->callMethod($svc, 'validateValue', ['xxx', 'xxx']);
     }
+
+    public function testValidateValueDiretoryValid() {
+        $svc = new ConfigValidator();
+        $this->assertEquals(null, $this->callmethod($svc, 'validateValue', [sys_get_temp_dir(), 'directory']));
+    }
+
+    public function testValidateValueDiretoryInvalid() {
+        $svc = new ConfigValidator();
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('"::#\\" is not an existing, accessible directory');
+        $this->callmethod($svc, 'validateValue', ['::#\\', 'directory']);
+    }
+    
+    public function testValidateValueFileValid() {
+        $tmpFile = tempnam(sys_get_temp_dir(), 'testConfigFile');
+        try {
+            $svc = new ConfigValidator();
+            $this->assertEquals(null, $this->callmethod($svc, 'validateValue', [$tmpFile, 'file']));
+        } finally {
+            unlink($tmpFile);
+        }
+    }
+
+    public function testValidateValueFileInvalid() {
+        $svc = new ConfigValidator();
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('"::#\\" is not an existing, accessible file');
+        $this->callmethod($svc, 'validateValue', ['::#\\', 'file']);
+    }
+    
 }

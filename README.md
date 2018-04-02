@@ -54,12 +54,16 @@ options:
    timeout:
       type: integer
       required: false
+   logo: file
+   logs: directory
    copyright
 ````
 
 Every leaf in the tree corresponds to a Configuration Item, located with the hiearchy of its parent nodes.  Configuration Items have two properties, *type* and *required*.  By default, Configuration Items can be of *any* type, and are required.  
 
 In the example above, the final Configuration Item, "copyright" can be any value, but must exist in the Application Configuration.  The "timeout" property is not requiredto exist in the Application Configuration file, but must be an integer (whole number) if it is.
+
+There are two entries, "logo" and "logs" which must be an existing file and directory, respectively.  Note that this check is done withing the user context that the test is run, which may not be the same as the context the application itself runs in, so this isn't a 100% foolproof check.
 
 For "service1", its endpoint Configuration Item is required and must be a valid URL.  The "key" and "secret" Configuration Items are required to be defined (under "credentials") and be non-empty strings.
 
@@ -75,7 +79,9 @@ return [
        ]
    ],
    'options' => [
-       'copyright' => '(c) Me 2018'
+       'copyright' => '(c) Me 2018',
+       'logo' => '/var/shared/company.jpg',
+       'logs' => '/var/log/foo',
    ]
 ]
 ````
@@ -87,7 +93,9 @@ The following types are currently supported:
 * number: any numeric value
 * integer: any whole value (positive or negative) but without a decimal portion
 * boolean: any boolean-ish value (true/value, y/n, yes/no)
-* url: any well-structured URL 
+* url: any well-structured URL
+* directory: an existing, accessible directory
+* file: an existing, accessible file
 
 ## Development
 
