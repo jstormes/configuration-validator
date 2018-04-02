@@ -10,7 +10,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "bin": [
-        "config-test"
+        "config-validator"
     ],
     "require": {
         "php": "^5.6 || ^7.0",
