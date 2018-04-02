@@ -1,5 +1,5 @@
 {
-    "name": "Configuration Validator",
+    "name": "configuration-validator",
     "description": "Utility to collect and validate configuration information",
     "license": "MIT",
     "keywords": [
