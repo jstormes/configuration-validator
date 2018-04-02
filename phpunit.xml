@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit colors="true" bootstrap="./test/Bootstrap.php">
+    <testsuites>
+        <testsuite name="Configuration Validator Test Suite">
+            <directory>./test</directory>
+        </testsuite>
+    </testsuites>
+  <logging>
+    <log type='coverage-html' target='./test/coverage-report' />
+  </logging>
+  <filter>
+    <whitelist processUncoveredFilesFromWhitelist="false">
+      <directory suffix=".php">src</directory>
+    </whitelist>
+  </filter>  
+</phpunit>
